@@ -1,4 +1,10 @@
-# Essentiels for Kubuntu (normallement compatible Ubunu) - 
+# Essentiels for Kubuntu v23.10 (normallement compatible Ubunu) - 
+
+## Version de l'OS
+
+```bash
+lsb_release -a
+```
 
 ## Outils de base
 
@@ -52,6 +58,36 @@ sudo apt -y install php-symfony-console
 sudo wget https://get.symfony.com/cli/installer -O - | bash
 sudo mv /home/dev/.symfony5/bin/symfony /usr/local/bin/symfony
 symfony version
+```
+
+## MySQL
+
+[Source](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+
+### Installation
+
+```bash
+sudo apt install mysql-server
+sudo systemctl start mysql.service
+```
+
+### Configuration
+
+```bash
+sudo mysql
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+exit
+```
+
+```bash
+mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+exit
+
+```
+
+```bash
+sudo mysql_secure_installation
 ```
 
 ## Github Desktop
