@@ -8,8 +8,19 @@ lsb_release -a
 
 ## Outils de base
 
+- **curl** : Curl est un outil en ligne de commande pour transférer des données à partir ou vers un serveur, utilisant divers protocoles pris en charge, tels que HTTP, HTTPS, FTP, etc. Il est souvent utilisé pour automatiser des tâches liées au téléchargement ou à l'envoi de données sur le web.
+- **wget** : Wget est un autre outil en ligne de commande pour le téléchargement de fichiers depuis le web. Il permet de récupérer des fichiers à partir de serveurs web en utilisant divers protocoles tels que HTTP, HTTPS, FTP, et FTPS.
+- **nano** : Nano est un éditeur de texte en ligne de commande qui est souvent utilisé pour modifier des fichiers texte directement dans un terminal. Il est conçu pour être simple à utiliser, avec une interface utilisateur intuitive.
+- **tree** : Tree est une commande en ligne de commande qui affiche la structure arborescente des répertoires et des fichiers dans un système de fichiers. Il affiche les répertoires et les fichiers de manière hiérarchique, montrant les relations entre eux sous forme d'arborescence.
+- **git** : Git est un système de contrôle de version distribué largement utilisé pour le suivi des modifications apportées aux fichiers et aux projets logiciels. Il est utilisé pour la gestion collaborative du code source, le suivi des versions, le travail en équipe et bien plus encore.
+- **gitk** : Gitk est une interface graphique en ligne de commande pour Git. Elle permet de visualiser l'historique des commits, les branches et les fusions dans un dépôt Git. C'est un outil pratique pour examiner l'historique des modifications dans un projet Git.
+- **gnupg** : GnuPG (Gnu Privacy Guard) est un logiciel de cryptographie qui implémente le standard OpenPGP pour le chiffrement et la signature de données. Il est utilisé pour sécuriser les communications, les fichiers et les emails en fournissant des mécanismes de chiffrement et de signature numérique.
+- **zip & unzip** : Ce sont des utilitaires en ligne de commande utilisés pour compresser et décompresser des fichiers au format ZIP, respectivement. Zip est utilisé pour créer des archives compressées au format ZIP, tandis que Unzip est utilisé pour extraire des fichiers à partir d'archives ZIP.
+- **p7zip-full** : Il s'agit d'un package qui inclut l'implémentation 7zip (p7zip) ainsi que les outils en ligne de commande pour créer et extraire des archives au format 7z, ainsi que d'autres formats de compression pris en charge par 7zip.
+- **baobab** : Baobab est une application graphique utilisée pour visualiser l'utilisation de l'espace disque sur un système de fichiers. Elle affiche une représentation visuelle de la taille des fichiers et des répertoires, ce qui permet à l'utilisateur de comprendre rapidement quels fichiers ou répertoires occupent le plus d'espace sur le disque. Cela peut être utile pour gérer l'espace disque et identifier les fichiers ou répertoires volumineux qui pourraient être supprimés ou déplacés.
+
 ```bash
-sudo apt install curl wget nano tree git gitk gnupg zip unzip
+sudo apt install curl wget nano tree git gitk gnupg zip unzip baobab p7zip-full
 ```
 
 ```bash
@@ -20,6 +31,8 @@ tree --version
 git --version
 gitk --version
 gnupg --version
+baobab --version
+7z --version
 ```
 
 ## DevKits (SDK)
