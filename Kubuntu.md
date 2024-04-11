@@ -303,6 +303,7 @@ rm mongodb-compass_1.40.4_amd64.deb
 	- Install : ✔ **SUCCESS**
 	- Auto-Config : ❌ **FAIL**
 	- Start : ❌ **FAIL**
+	- Stable : 🤷‍♂️ **IN CHECK**
 
 ### KMail
 
@@ -316,6 +317,7 @@ sudo appstreamcli install org.kde.kmail2.desktop
 	- Install : ✔ **SUCCESS**
 	- Auto-Config: ✔ **SUCCESS**
 	- Start : ✔ **SUCCESS**
+	- Stable : 🤷‍♂️ **IN CHECK**
 
 ### Mailspring
 
@@ -329,6 +331,7 @@ sudo snap install mailspring
 	- Install : ✔ **SUCCESS**
 	- Auto-Config: ✔ **SUCCESS**
 	- Start : ✔ **SUCCESS**
+	- Stable : 🤷‍♂️ **IN CHECK**
 
 ### Evolution
 
@@ -347,6 +350,7 @@ cd evolution-3.52.0
 	- Install : ❌ **FAIL**
 	- Auto-Config : ❌ **FAIL**
 	- Start : ❌ **FAIL**
+	- Stable : 🤷‍♂️ **IN CHECK**
 
 ### BlueMail
 
@@ -364,6 +368,7 @@ sudo dpkg -i BlueMail.deb
 	- Install : ✔ **SUCCESS**
 	- Auto-Config : ❌ **FAIL**
 	- Start : ❌ **FAIL**
+	- Stable : 🤷‍♂️ **IN CHECK**
 
 ### Geary
 
@@ -377,3 +382,4 @@ sudo apt install geary
 	- Install : ✔ **SUCCESS**
 	- Auto-Config: ✔ **SUCCESS**
 	- Start : ✔ **SUCCESS**
+	- Stable : 🤷‍♂️ **IN CHECK**
