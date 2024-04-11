@@ -290,3 +290,90 @@ sudo dpkg -i mongodb-compass_1.40.4_amd64.deb
 mongodb-compass
 rm mongodb-compass_1.40.4_amd64.deb
 ```
+
+---
+
+## Apps Mails
+
+### Thunderbird
+
+**Already installed!**
+
+- Test :
+	- Install : ✔ **SUCCESS**
+	- Auto-Config : ❌ **FAIL**
+	- Start : ❌ **FAIL**
+
+### KMail
+
+Source : https://apps.kde.org/fr/kmail2/
+
+```bash
+sudo appstreamcli install org.kde.kmail2.desktop
+```
+
+- Test :
+	- Install : ✔ **SUCCESS**
+	- Auto-Config: ✔ **SUCCESS**
+	- Start : ✔ **SUCCESS**
+
+### Mailspring
+
+Source : https://www.getmailspring.com/
+
+```bash
+sudo snap install mailspring
+```
+
+- Test :
+	- Install : ✔ **SUCCESS**
+	- Auto-Config: ✔ **SUCCESS**
+	- Start : ✔ **SUCCESS**
+
+### Evolution
+
+Source : https://wiki.gnome.org/Apps/Evolution
+
+```bash
+cd ~/Downloads/
+mkdir Evolution
+cd Evolution
+wget https://gitlab.gnome.org/GNOME/evolution/-/archive/3.52.0/evolution-3.52.0.zip
+unzip evolution-3.52.0.zip
+cd evolution-3.52.0
+```
+
+- Test :
+	- Install : ❌ **FAIL**
+	- Auto-Config : ❌ **FAIL**
+	- Start : ❌ **FAIL**
+
+### BlueMail
+
+Source : https://bluemail.me/desktop/linux/
+
+```bash
+cd ~/Downloads/
+mkdir BlueMail
+cd BlueMail
+wget https://download.bluemail.me/BlueMail/deb/BlueMail.deb
+sudo dpkg -i BlueMail.deb
+```
+
+- Test :
+	- Install : ✔ **SUCCESS**
+	- Auto-Config : ❌ **FAIL**
+	- Start : ❌ **FAIL**
+
+### Geary
+
+Source : https://wiki.gnome.org/Apps/Geary
+
+```bash
+sudo apt install geary
+```
+
+- Test :
+	- Install : ✔ **SUCCESS**
+	- Auto-Config: ✔ **SUCCESS**
+	- Start : ✔ **SUCCESS**
