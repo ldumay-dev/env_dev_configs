@@ -59,6 +59,7 @@ mvn --version
 node --version
 npx --version
 npm --version
+npm --versions
 yarn --version
 ng v
 ```
