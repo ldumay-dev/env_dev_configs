@@ -104,6 +104,50 @@ exit
 sudo mysql_secure_installation
 ```
 
+## MySQL Workbench (non finit)
+
+Sources :
+- https://gcore.com/learning/how-to-install-mysql-workbench/
+
+```bash
+sudo snap install mysql-workbench-community
+```
+
+## MongoDB
+
+Source :
+
+- https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+
+```bash
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+sudo systemctl start mongod
+sudo systemctl status mongod
+```
+
+- Usage : 
+	- https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#begin-using-mongodb
+	- MongoDB Compass
+
+## MongoDB Compass
+
+Source :
+
+- https://www.mongodb.com/docs/compass/current/install/
+
+```bash
+cd Downloads
+wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb
+sudo dpkg -i mongodb-compass_1.40.4_amd64.deb
+mongodb-compass
+rm mongodb-compass_1.40.4_amd64.deb
+```
+
 ## Github Desktop
 
 Sources :
@@ -138,6 +182,43 @@ sudo gdebi GitHubDesktop-linux-3.1.1-linux1.deb
 cd Downloads/
 https://github.com/shiftkey/desktop/releases/download/release-3.3.6-linux1/GitHubDesktop-linux-3.3.6-linux1.deb
 sudo gdebi GitHubDesktop-linux-3.3.6-linux1.deb
+```
+
+## Docker
+
+Source :
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
+
+```bash
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo systemctl status docker
+```
+
+- Executing docker without sudo => https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04#step-2-executing-the-docker-command-without-sudo-optional
+
+
+## Docker Desktop
+
+### Pour installer
+
+```
+sudo apt install --yes qemu-system-x86 pass uidmap
+cd ~/Downloads
+wget https://desktop.docker.com/linux/main/amd64/145265/docker-desktop-4.29.0-amd64.deb
+sudo dpkg -i docker-desktop-4.29.0-amd64.deb
+systemctl --user start docker-desktop
+systemctl --user status docker-desktop
+```
+
+### Pour désintaller
+
+```
+sudo apt remove docker-desktop qemu-system-x86 pass uidmap
 ```
 
 ## VScode
@@ -215,81 +296,6 @@ Sources :
 
 ```bash
 sudo snap install whatsapp-for-linux
-```
-
-## Docker
-
-Source :
-
-- https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
-
-```bash
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-apt-cache policy docker-ce
-sudo apt install docker-ce
-sudo systemctl status docker
-```
-
-- Executing docker without sudo => https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04#step-2-executing-the-docker-command-without-sudo-optional
-
-
-## MySQL Workbench (non finit)
-
-Sources :
-- https://gcore.com/learning/how-to-install-mysql-workbench/
-
-```bash
-cd Downloads
-wget -v https://repo.mysql.com//mysql-apt-config_0.8.26-1_all.deb
-sudo dpkg -i mysql-apt-config_0.8.26-1_all.deb
-```
-
-> Selections :
-> 1. **ubuntu lunar**
-> 2. **mysql-8.0**
-> 	- mysql-8.0
-
-```bash
-sudo apt install mysql-workbench
-mysql-workbench
-rm mysql-apt-config_0.8.26-1_all.deb
-```
-
-## MongoDB
-
-Source :
-
-- https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
-
-```bash
-curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
-   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
-   --dearmor
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-sudo systemctl start mongod
-sudo systemctl status mongod
-```
-
-- Usage : 
-	- https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#begin-using-mongodb
-	- MongoDB Compass
-
-## MongoDB Compass
-
-Source :
-
-- https://www.mongodb.com/docs/compass/current/install/
-
-```bash
-cd Downloads
-wget https://downloads.mongodb.com/compass/mongodb-compass_1.40.4_amd64.deb
-sudo dpkg -i mongodb-compass_1.40.4_amd64.deb
-mongodb-compass
-rm mongodb-compass_1.40.4_amd64.deb
 ```
 
 ---
