@@ -20,7 +20,7 @@ lsb_release -a
 - **baobab** : Baobab est une application graphique utilisée pour visualiser l'utilisation de l'espace disque sur un système de fichiers. Elle affiche une représentation visuelle de la taille des fichiers et des répertoires, ce qui permet à l'utilisateur de comprendre rapidement quels fichiers ou répertoires occupent le plus d'espace sur le disque. Cela peut être utile pour gérer l'espace disque et identifier les fichiers ou répertoires volumineux qui pourraient être supprimés ou déplacés.
 
 ```bash
-sudo apt install curl wget nano tree git gitk gnupg zip unzip baobab p7zip-full
+sudo apt -y install curl wget nano tree git gitk gnupg zip unzip baobab p7zip-full
 ```
 
 ```bash
@@ -38,14 +38,14 @@ baobab --version
 ## DevKits (SDK)
 
 ```bash     
-sudo apt install libpcre3
-sudo apt install php --no-install-recommends
-sudo apt install php-amqp php-apcu php-bcmath php-cli php-ctype php-curl php-dom php-gd php-gmp php-imagick php-intl php-json php-mbstring php-mysql php-pdo php-pgsql php-redis php-simplexml php-sqlite3 php-tokenizer php-xdebug php-xml php-zip
-#sudo apt install php-openssl
-sudo apt install composer
-sudo apt install python3 python3-pip python3-venv python3-dev python3-wheel python3-setuptools
-sudo apt install openjdk-17-jdk maven gradle
-sudo apt install nodejs npm
+sudo apt -y install libpcre3
+sudo apt -y install php --no-install-recommends
+sudo apt -y install php-amqp php-apcu php-bcmath php-cli php-ctype php-curl php-dom php-gd php-gmp php-imagick php-intl php-json php-mbstring php-mysql php-pdo php-pgsql php-redis php-simplexml php-sqlite3 php-tokenizer php-xdebug php-xml php-zip
+#sudo apt -y install php-openssl
+sudo apt -y install composer
+sudo apt -y install python3 python3-pip python3-venv python3-dev python3-wheel python3-setuptools
+sudo apt -y install openjdk-17-jdk maven gradle
+sudo apt -y install nodejs npm
 sudo npm install -g yarn
 sudo npm install -g @angular/cli@16
 ```
@@ -64,6 +64,48 @@ yarn --version
 ng v
 ```
 
+## Oh My Posh
+
+### Installation de Oh My Posh
+
+```bash
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+```
+
+### Installation des thèmes de Oh My Posh
+
+```bash
+mkdir ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
+unzip themes.zip -d ~/.poshthemes
+chmod u+rw,g+r ~/.poshthemes/*.json
+rm themes.zip
+```
+
+### Installation de la police de Oh My Posh
+
+```bash
+cd ~
+mkdir .fonts
+cd ~/Downloads/
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip ~/Downloads/Meslo.zip -d ~/.fonts/Meslo
+fc-cache -fv
+```
+
+### Configuration de Oh My Posh
+
+```bash
+oh-my-posh init bash --config .poshthemes/montys.omp.json > .oh-my-post-init.sh
+sudo mv -v .oh-my-post-init.sh /etc/profile.d/oh-my-post-init.sh
+source /etc/profile.d/oh-my-posh-init.sh
+echo "source .oh-my-post-init.sh" >> .bashrc
+source .bashrc
+```
+
+🚨🚨🚨 Pas stable, à revoir... 🚨🚨🚨
+
 ## DevKit (SDK) - Symfony
 
 ```bash
@@ -81,7 +123,7 @@ symfony version
 ### Installation
 
 ```bash
-sudo apt install mysql-server
+sudo apt -y install mysql-server
 sudo systemctl start mysql.service
 ```
 
@@ -112,6 +154,19 @@ Sources :
 ```bash
 sudo snap install mysql-workbench-community
 ```
+
+```bash
+cd ~/Downloads
+wget -v https://repo.mysql.com//mysql-apt-config_0.8.26-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.26-1_all.deb
+sudo apt -y install mysql-workbench
+mysql-workbench
+rm mysql-apt-config_0.8.26-1_all.deb
+```
+
+> Selections :
+> 1. **MySQL Server & Cluster**
+> 2. **mysql-8.0**
 
 ## MongoDB
 
@@ -163,7 +218,7 @@ Sources :
 ```bash
 wget -qO - https://apt.packages.shiftkey.dev/gpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/shiftkey-packages.gpg > /dev/null
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/shiftkey-packages.gpg] https://apt.packages.shiftkey.dev/ubuntu/ any main" > /etc/apt/sources.list.d/shiftkey-packages.list'
-sudo apt update && sudo apt install github-desktop
+sudo apt update && sudo apt -y install github-desktop
 ```
 
 ### Installation manuelle
@@ -191,11 +246,11 @@ Source :
 - https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
 ```bash
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt -y install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 apt-cache policy docker-ce
-sudo apt install docker-ce
+sudo apt -y install docker-ce
 sudo systemctl status docker
 ```
 
@@ -207,7 +262,7 @@ sudo systemctl status docker
 ### Pour installer
 
 ```
-sudo apt install --yes qemu-system-x86 pass uidmap
+sudo apt -y install qemu-system-x86 pass uidmap
 cd ~/Downloads
 wget https://desktop.docker.com/linux/main/amd64/145265/docker-desktop-4.29.0-amd64.deb
 sudo dpkg -i docker-desktop-4.29.0-amd64.deb
@@ -238,7 +293,7 @@ Sources :
 - Source - Microsoft : https://code.visualstudio.com/docs/setup/linux
 
 ```bash
-sudo apt install libfuse2
+sudo apt -y install libfuse2
 cd Downloads
 wget -v https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-2.1.3.18901.tar.gz
 tar -xzf jetbrains-toolbox-*.tar.gz --one-top-level=jetbrains --strip-components 1
@@ -286,7 +341,7 @@ sudo snap install discord
 
 ```bash
 wget "https://discord.com/api/download?platform=linux&format=deb" -O discord.deb
-sudo apt install ./discord.deb -y
+sudo apt -y install ./discord.deb -y
 ```
 
 ## WhatsApp
@@ -340,25 +395,6 @@ sudo snap install mailspring
 	- Start : ✔ **SUCCESS**
 	- Stable : 🤷‍♂️ **IN CHECK**
 
-### Evolution
-
-Source : https://wiki.gnome.org/Apps/Evolution
-
-```bash
-cd ~/Downloads/
-mkdir Evolution
-cd Evolution
-wget https://gitlab.gnome.org/GNOME/evolution/-/archive/3.52.0/evolution-3.52.0.zip
-unzip evolution-3.52.0.zip
-cd evolution-3.52.0
-```
-
-- Test :
-	- Install : ❌ **FAIL**
-	- Auto-Config : ❌ **FAIL**
-	- Start : ❌ **FAIL**
-	- Stable : 🤷‍♂️ **IN CHECK**
-
 ### BlueMail
 
 Source : https://bluemail.me/desktop/linux/
@@ -382,13 +418,64 @@ sudo dpkg -i BlueMail.deb
 Source : https://wiki.gnome.org/Apps/Geary
 
 ```bash
-sudo apt install geary
+sudo apt -y install geary
 ```
 
 - Test :
 	- Install : ✔ **SUCCESS**
 	- Auto-Config: ✔ **SUCCESS**
 	- Start : ✔ **SUCCESS**
+	- Stable : 🤷‍♂️ **IN CHECK**
+
+### Evolution
+
+Source : 
+- wiki :
+	- https://wiki.gnome.org/Apps/Evolution
+	- https://wiki.gnome.org/Apps/Evolution#Get_the_Source_Code
+- gitlab :
+	- dépôts :
+		- https://gitlab.gnome.org/GNOME/evolution/
+		- https://gitlab.gnome.org/GNOME/evolution-data-server/
+	- building :
+		- https://gitlab.gnome.org/GNOME/evolution/-/wikis/Building
+
+Dernières release :
+	- evolution : **3.52.0**
+	- evolution-data-server : **3.52.0**
+
+```bash
+sudo apt -y install cmake
+#---
+cd ~/Downloads/
+mkdir Evolution
+cd Evolution
+#---
+git clone https://gitlab.gnome.org/GNOME/evolution-data-server.git
+git clone https://gitlab.gnome.org/GNOME/evolution.git
+#---
+cd evolution-data-server
+git checkout -b gnome-3.52.0 origin/gnome-3.52.0
+mkdir _build
+#---
+cd ../evolution
+git checkout -b gnome-3.52.0 origin/gnome-3.52.0
+mkdir _build
+#---
+tree -d -L 2
+#---
+export GSETTINGS_SCHEMA_DIR="/opt/evolution/share/glib-2.0/schemas"
+export LD_LIBRARY_PATH=/opt/evolution/lib:$LD_LIBRARY_PATH
+export PATH=/opt/evolution/bin:$PATH
+export PKG_CONFIG_PATH=/opt/evolution/lib/pkgconfig:$PKG_CONFIG_PATH
+```
+
+🚨🚨🚨 **Pas finit, à revoir...** 🚨🚨🚨
+
+- Test :
+	- Install : ❌ **FAIL**
+	- Auto-Config : ❌ **FAIL**
+	- Start : ❌ **FAIL**
 	- Stable : 🤷‍♂️ **IN CHECK**
 
 ---
