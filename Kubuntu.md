@@ -384,3 +384,30 @@ sudo apt install geary
 	- Auto-Config: ✔ **SUCCESS**
 	- Start : ✔ **SUCCESS**
 	- Stable : 🤷‍♂️ **IN CHECK**
+
+---
+
+## Petit script de création d'un environement de dépôts de développement
+
+```bash
+#---EnvProject---
+cd
+mkdir dev
+mkdir dev/ldumay
+mkdir dev/ldumay/local
+mkdir dev/ldumay/org/
+mkdir dev/ldumay/org/2023-esiee-projectlab
+mkdir dev/ldumay/org/ldumay-dev
+mkdir dev/ldumay/org/ldumay-dev-and-prod
+mkdir dev/ldumay/org/ldumay-prod
+mkdir dev/ldumay/org/ldumay-prod-dockers/
+mkdir dev/ldumay/org/yama-soft
+tree -d -L 3
+
+#---DemoProject---
+cd ~/dev/ldumay/local/
+git clone https://github.com/davidmoten/maven-demo.git
+cd maven-demo
+mvn clean install
+tree
+```
