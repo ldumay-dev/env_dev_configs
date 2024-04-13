@@ -496,12 +496,16 @@ Dernières release :
 	- evolution : **3.52.0**
 	- evolution-data-server : **3.52.0**
 
+**🚨🚨Tout revoir à cause de --sources/build--🚨🚨**
+
 ```bash
 sudo apt -y install cmake
 #---
-cd ~/Downloads/
-mkdir Evolution
-cd Evolution
+cd ~/
+mkdir Apps/
+mkdir Apps/Evolution_AppMail/
+mkdir Apps/Evolution_AppMail/build
+cd ~/Apps/Evolution_AppMail/
 #---
 git clone https://gitlab.gnome.org/GNOME/evolution-data-server.git
 git clone https://gitlab.gnome.org/GNOME/evolution.git
@@ -514,8 +518,75 @@ cd ../evolution
 git checkout -b gnome-3.52.0 origin/gnome-3.52.0
 mkdir _build
 #---
+cd ../
+ls -l build/
 tree -d -L 2
-#---
+```
+
+Ajouter le code suivant dans le fichier `build` de chaque application :
+- Chemins :
+	- Path : `~/Apps/Evolution_AppMail/build/`
+
+- Commande :
+
+```bash
+code -n ~/Apps/Evolution_AppMail/
+```
+- Code :
+
+```bash
+#!/bin/bash
+export PREFIX=$HOME/build
+export PATH=$PREFIX/bin:$PATH
+export XDG_DATA_DIRS=$PREFIX/share:$XDG_DATA_DIRS
+export LD_LIBRARY_PATH=$PREFIX/lib
+export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
+export GSETTINGS_SCHEMA_DIR=$PREFIX/share/glib-2.0/schemas
+export CFLAGS="-Wno-deprecated-declarations"
+```
+
+Pour controller :
+
+```bash
+echo "Evolution_AppMail/evolution-data-server/"
+cat ~/Apps/Evolution_AppMail/evolution-data-server/_build/build
+
+echo "Evolution_AppMail/evolution/"
+cat ~/Apps/Evolution_AppMail/evolution/_build/build
+```
+
+```bash
+chmod o+x $HOME/Apps/Evolution_AppMail/evolution/_build/build
+source $HOME/Apps/Evolution_AppMail/evolution/_build/build
+```
+
+```bash
+cd ~/Apps/Evolution_AppMail/evolution-data-server/_build
+cmake .. -G "Unix Makefiles" \
+	-DCMAKE_BUILD_TYPE=Debug \
+	-DCMAKE_INSTALL_PREFIX=$PREFIX \
+	-DLIB_SUFFIX= \
+	-DENABLE_FILE_LOCKING=fcntl \
+	-DENABLE_DOT_LOCKING=OFF \
+	-DENABLE_CANBERRA=OFF \
+	-DENABLE_OAUTH2=ON \
+	-DENABLE_GTK=ON \
+	-DENABLE_UOA=OFF \
+	-DENABLE_EXAMPLES=ON \
+	-DENABLE_INTROSPECTION=ON \
+	-DENABLE_VALA_BINDINGS=ON \
+	-DENABLE_INSTALLED_TESTS=OFF \
+	-DENABLE_GTK_DOC=OFF \
+	-DWITH_PRIVATE_DOCS=OFF \
+	-DWITH_PHONENUMBER=OFF \
+	-DWITH_LIBDB=OFF
+```
+
+🚨 En cours
+- source principale : https://gitlab.gnome.org/GNOME/evolution/-/wikis/Building
+
+```bash
+#--- Autre ---
 export GSETTINGS_SCHEMA_DIR="/opt/evolution/share/glib-2.0/schemas"
 export LD_LIBRARY_PATH=/opt/evolution/lib:$LD_LIBRARY_PATH
 export PATH=/opt/evolution/bin:$PATH
@@ -529,6 +600,27 @@ export PKG_CONFIG_PATH=/opt/evolution/lib/pkgconfig:$PKG_CONFIG_PATH
 	- Auto-Config : ❌ **FAIL**
 	- Start : ❌ **FAIL**
 	- Stable : 🤷‍♂️ **IN CHECK**
+
+---
+
+## Le suite Office
+
+### LibreOffice
+
+**Already installed!**
+
+### Microsoft Office
+
+Sources :
+- https://www.youtube.com/watch?v=LH-6tp-KBuQ&t=201s
+
+```bash
+sudo apt -y install playonlinux
+sudo apt -y install winbind
+```
+
+1. Sélectionner :
+	- Office 2016 (B)
 
 ---
 
