@@ -64,24 +64,26 @@ yarn --version
 ng v
 ```
 
+## Homebrew
+
+```bash
+sudo apt -y install build-essential procps curl file git
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+brew install hello
+```
+
+> Test : `hello`
+> ```bash
+> dev@dev:~$ hello
+> Hello, world!
+> ```
+
 ## Oh My Posh
-
-### Installation de Oh My Posh
-
-```bash
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
-```
-
-### Installation des thèmes de Oh My Posh
-
-```bash
-mkdir ~/.poshthemes
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
-unzip themes.zip -d ~/.poshthemes
-chmod u+rw,g+r ~/.poshthemes/*.json
-rm themes.zip
-```
 
 ### Installation de la police de Oh My Posh
 
@@ -94,17 +96,67 @@ unzip ~/Downloads/Meslo.zip -d ~/.fonts/Meslo
 fc-cache -fv
 ```
 
-### Configuration de Oh My Posh
+> Dans les terminals, il faut sélectionner la police **MesloLGS NF Regular**.
+
+### Installation de Oh My Posh - Homebrew
+
+```bash
+brew install jandedobbeleer/oh-my-posh/oh-my-posh
+```
+
+### Installation de Oh My Posh - Manual
+
+```bash
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+```
+
+#### Installation des thèmes de Oh My Posh
+
+```bash
+mkdir ~/.poshthemes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O themes.zip
+unzip themes.zip -d ~/.poshthemes
+chmod u+rw,g+r ~/.poshthemes/*.json
+rm themes.zip
+```
+
+#### Configuration de Oh My Posh
 
 ```bash
 oh-my-posh init bash --config .poshthemes/montys.omp.json > .oh-my-post-init.sh
 sudo mv -v .oh-my-post-init.sh /etc/profile.d/oh-my-post-init.sh
-source /etc/profile.d/oh-my-posh-init.sh
+source /etc/profile.d/oh-my-post-init.sh
 echo "source .oh-my-post-init.sh" >> .bashrc
 source .bashrc
 ```
 
+#### Suppression de Oh My Posh
+
+```bash
+#---Suppression---
+rm -v .oh-my-post-init.sh
+sed -i '/source .oh-my-post-init.sh/d' .bashrc
+source .bashrc
+#rm -v .bashrc
+#---Suppression des fichiers---
+sudo rm -v /usr/local/bin/oh-my-posh
+sudo rm -v /etc/profile.d/oh-my-post-init.sh
+#---Suppression des thèmes---
+rm -r -v ~/.poshthemes
+#---Suppression de la police---
+rm -r -v ~/.fonts/Meslo
+fc-cache -fv
+```
+
 🚨🚨🚨 Pas stable, à revoir... 🚨🚨🚨
+- https://brew.sh/
+- https://docs.brew.sh/Homebrew-on-Linux#install
+- https://ohmyposh.dev/docs/themes
+- https://ohmyposh.dev/docs/installation/linux
+- https://calebschoepp.com/blog/2021/how-to-setup-oh-my-posh-on-ubuntu/
+- https://www.librebyte.net/en/cli-en/oh-my-posh-a-beatifull-prompt-for-your-shell/
+- https://askubuntu.com/questions/963874/uninstall-oh-my-zsh
 
 ## DevKit (SDK) - Symfony
 
