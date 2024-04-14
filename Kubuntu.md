@@ -496,42 +496,99 @@ Dernières release :
 	- evolution : **3.52.0**
 	- evolution-data-server : **3.52.0**
 
-**🚨🚨Tout revoir à cause de --sources/build--🚨🚨**
+#### Pré-requis :
+
+Pour Kubuntu :
+```bash
+sudo apt -y install cmake g++ gperf intltool libtool-bin libgtk-3-dev \
+    libgcr-3-dev libglib2.0-dev libgoa-1.0-dev libgirepository1.0-dev \
+    libjson-glib-dev libkrb5-dev libgdata-dev libgweather-dev \
+    libical-glib-dev libsecret-1-dev libxml2-dev libnspr4-dev \
+    libnss3-dev libldap2-dev libsqlite3-dev libwebkit2gtk-4.0-dev \
+    libenchant-2-dev gsettings-desktop-schemas libgspell-dev \
+    libnotify-dev libytnef0-dev libcmark-dev highlight
+
+sudo apt -y install cmake g++ gperf intltool libtool-bin libgtk-3-dev \
+    libgcr-3-dev libglib2.0-dev libgoa-1.0-dev libgirepository1.0-dev \
+    libjson-glib-dev libkrb5-dev libgdata-dev \
+    libsecret-1-dev libxml2-dev libnspr4-dev \
+    libnss3-dev libldap2-dev libsqlite3-dev libwebkit2gtk-4.0-dev \
+    libenchant-2-dev gsettings-desktop-schemas \
+    libnotify-dev libytnef0-dev libcmark-dev highlight
+sudo apt -y install libmspack
+```
+
+> NB :
+> - E: Impossible de trouver le paquet libgweather-dev
+> - E: Impossible de trouver le paquet libical-glib-dev
+> - E: Impossible de trouver le paquet libgspell-dev
+
+
+Pour Fedora :
+```bash
+sudo dnf install cmake gcc-c++ gperf intltool redhat-rpm-config vala \
+	gcr-devel \
+	glib2-devel \
+	gnome-online-accounts-devel \
+	gobject-introspection-devel \
+	gtk3-devel \
+	json-glib-devel \
+	krb5-devel \
+	libgdata-devel \
+	libgweather-devel \
+	libical-glib-devel \
+	libsecret-devel \
+	libxml2-devel \
+	nspr-devel \
+	nss-devel \
+	openldap-devel \
+	sqlite-devel \
+	webkit2gtk3-devel
+sudo dnf install \
+	enchant2-devel \
+	gsettings-desktop-schemas-devel \
+	gspell-devel \
+	libnotify-devel \
+	libytnef-devel \
+	cmark-devel \
+	highlight
+```
+
+#### Installation :
 
 ```bash
-sudo apt -y install cmake
-#---
 cd ~/
 mkdir Apps/
 mkdir Apps/Evolution_AppMail/
-mkdir Apps/Evolution_AppMail/build
+touch Apps/Evolution_AppMail/build
 cd ~/Apps/Evolution_AppMail/
 #---
+git clone https://gitlab.gnome.org/GNOME/evolution-ews.git
 git clone https://gitlab.gnome.org/GNOME/evolution-data-server.git
 git clone https://gitlab.gnome.org/GNOME/evolution.git
 #---
+cd evolution-ews
+git checkout -b gnome-46 origin/gnome-46
+mkdir _build
+#---
 cd evolution-data-server
-git checkout -b gnome-3.52.0 origin/gnome-3.52.0
+git checkout -b gnome-46 origin/gnome-46
 mkdir _build
 #---
 cd ../evolution
-git checkout -b gnome-3.52.0 origin/gnome-3.52.0
+git checkout -b gnome-46 origin/gnome-46
 mkdir _build
 #---
 cd ../
-ls -l build/
 tree -d -L 2
+#---
+code -n ~/Apps/Evolution_AppMail/
 ```
 
 Ajouter le code suivant dans le fichier `build` de chaque application :
 - Chemins :
-	- Path : `~/Apps/Evolution_AppMail/build/`
+	- Path : `~/Apps/Evolution_AppMail/build`
 
-- Commande :
-
-```bash
-code -n ~/Apps/Evolution_AppMail/
-```
 - Code :
 
 ```bash
@@ -542,26 +599,52 @@ export XDG_DATA_DIRS=$PREFIX/share:$XDG_DATA_DIRS
 export LD_LIBRARY_PATH=$PREFIX/lib
 export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 export GSETTINGS_SCHEMA_DIR=$PREFIX/share/glib-2.0/schemas
-export CFLAGS="-Wno-deprecated-declarations"
+# Pour d'anciennes verions
+# export CFLAGS="-Wno-deprecated-declarations"
 ```
 
 Pour controller :
 
 ```bash
-echo "Evolution_AppMail/evolution-data-server/"
-cat ~/Apps/Evolution_AppMail/evolution-data-server/_build/build
-
-echo "Evolution_AppMail/evolution/"
-cat ~/Apps/Evolution_AppMail/evolution/_build/build
+cat ~/Apps/Evolution_AppMail/build
 ```
 
-```bash
-chmod o+x $HOME/Apps/Evolution_AppMail/evolution/_build/build
-source $HOME/Apps/Evolution_AppMail/evolution/_build/build
-```
+Pour ajotuer les droits d'exécution :
 
 ```bash
-cd ~/Apps/Evolution_AppMail/evolution-data-server/_build
+chmod o+x $HOME/Apps/Evolution_AppMail/build
+source $HOME/Apps/Evolution_AppMail/build
+```
+
+#### Construction :
+
+```bash
+cd $HOME/Apps/Evolution_AppMail/evolution-ews/_build
+cmake .. -G "Unix Makefiles" \
+	-DCMAKE_BUILD_TYPE=Debug \
+	-DCMAKE_INSTALL_PREFIX=$PREFIX \
+	-DLIB_SUFFIX= \
+	-DWITH_MSPACK=ON
+cd $HOME/Apps/Evolution_AppMail/evolution-data-server/_build
+cmake .. -G "Unix Makefiles" \
+	-DCMAKE_BUILD_TYPE=Debug \
+	-DCMAKE_INSTALL_PREFIX=$PREFIX \
+	-DLIB_SUFFIX= \
+	-DENABLE_FILE_LOCKING=fcntl \
+	-DENABLE_DOT_LOCKING=OFF \
+	-DENABLE_CANBERRA=OFF \
+	-DENABLE_OAUTH2=ON \
+	-DENABLE_GTK=ON \
+	-DENABLE_UOA=OFF \
+	-DENABLE_EXAMPLES=ON \
+	-DENABLE_INTROSPECTION=ON \
+	-DENABLE_VALA_BINDINGS=ON \
+	-DENABLE_INSTALLED_TESTS=OFF \
+	-DENABLE_GTK_DOC=OFF \
+	-DWITH_PRIVATE_DOCS=OFF \
+	-DWITH_PHONENUMBER=OFF \
+	-DWITH_LIBDB=OFF
+cd $HOME/Apps/Evolution_AppMail/evolution/_build
 cmake .. -G "Unix Makefiles" \
 	-DCMAKE_BUILD_TYPE=Debug \
 	-DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -582,6 +665,17 @@ cmake .. -G "Unix Makefiles" \
 	-DWITH_LIBDB=OFF
 ```
 
+#### Intallation :
+
+```bash
+cd $HOME/sources/evolution-ews/_build
+make && make install
+cd $HOME/sources/evolution-data-server/_build
+make && make install
+cd $HOME/sources/evolution/_build
+make && make install
+```
+
 🚨 En cours
 - source principale : https://gitlab.gnome.org/GNOME/evolution/-/wikis/Building
 
@@ -594,6 +688,7 @@ export PKG_CONFIG_PATH=/opt/evolution/lib/pkgconfig:$PKG_CONFIG_PATH
 ```
 
 🚨🚨🚨 **Pas finit, à revoir...** 🚨🚨🚨
+**===>ERROR BUILD<===***
 
 - Test :
 	- Install : ❌ **FAIL**
