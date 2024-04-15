@@ -481,6 +481,22 @@ sudo apt -y install geary
 
 ### Evolution
 
+#### Via la boutique d'applications ou Snap
+
+##### Via la boutique d'applications
+
+- Ouvrir la boutique d'applications
+- Rechercher **Evolution**
+- Installer
+
+##### Via Snap
+
+```bash
+sudo snap install evolution
+```
+
+#### Via Source
+
 Source : 
 - wiki :
 	- https://wiki.gnome.org/Apps/Evolution
@@ -496,7 +512,7 @@ Dernières release :
 	- evolution : **3.52.0**
 	- evolution-data-server : **3.52.0**
 
-#### Pré-requis :
+##### Pré-requis :
 
 Pour Kubuntu :
 ```bash
@@ -554,7 +570,7 @@ sudo dnf install \
 	highlight
 ```
 
-#### Installation :
+##### Installation :
 
 ```bash
 cd ~/
@@ -616,7 +632,7 @@ chmod o+x $HOME/Apps/Evolution_AppMail/build
 source $HOME/Apps/Evolution_AppMail/build
 ```
 
-#### Construction :
+##### Construction :
 
 ```bash
 cd $HOME/Apps/Evolution_AppMail/evolution-ews/_build
@@ -665,7 +681,7 @@ cmake .. -G "Unix Makefiles" \
 	-DWITH_LIBDB=OFF
 ```
 
-#### Intallation :
+##### Intallation :
 
 ```bash
 cd $HOME/sources/evolution-ews/_build
