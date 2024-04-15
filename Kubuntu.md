@@ -51,16 +51,54 @@ sudo npm install -g @angular/cli@16
 ```
 
 ```bash
+echo "+----------------------+"
+echo "|  PHP                 |"
+echo "+----------------------+"
 php --version
+
+echo "+----------------------+"
+echo "|  Composer			 |"
+echo "+----------------------+"
 composer --version
+
+echo "+----------------------+"
+echo "| Python               |"
+echo "+----------------------+"
 python3 --version
+
+echo "+----------------------+"
+echo "| Java               |"
+echo "+----------------------+"
 java --version
+
+echo "+----------------------+"
+echo "|  Maven                |"
+echo "+----------------------+"
 mvn --version
+
+echo "+----------------------+"
+echo "|  Node                |"
+echo "+----------------------+"
 node --version
+
+echo "+----------------------+"
+echo "|  NPX                 |"
+echo "+----------------------+"
 npx --version
+
+echo "+----------------------+"
+echo "|  NPM                 |"
+echo "+----------------------+"
 npm --version
-npm --versions
+
+echo "+----------------------+"
+echo "|  Yarn                |"
+echo "+----------------------+"
 yarn --version
+
+echo "+----------------------+"
+echo "|  Angular CLI         |"
+echo "+----------------------+"
 ng v
 ```
 
@@ -254,6 +292,46 @@ sudo dpkg -i mongodb-compass_1.40.4_amd64.deb
 mongodb-compass
 rm mongodb-compass_1.40.4_amd64.deb
 ```
+
+## PosgreSQL
+
+Source :
+- https://www.postgresql.org/download/linux/ubuntu/
+
+```bash
+sudo apt -y install postgresql postgresql-contrib
+sudo systemctl start postgresql
+sudo systemctl status postgresql
+```
+
+## PosgreSQL Admin
+
+Source :
+- https://www.pgadmin.org/download/pgadmin-4-apt/
+
+```bash
+# Prepare install pgAdmin 4:
+# - Install the public key for the repository (if not done previously):
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+# - Create the repository configuration file:
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+# Install pgAdmin 4 - 3 options are available:
+#  1. Install for both desktop and web modes:
+sudo apt -y install pgadmin4
+#  2. Install for desktop mode only:
+sudo apt -y install pgadmin4-desktop
+#  3. Install for web mode only: 
+sudo apt -y install pgadmin4-web
+
+# - Configure the webserver, if you installed pgadmin4-web:
+sudo /usr/pgadmin4/bin/setup-web.sh
+```
+
+### Accès à pgAdmin 4
+
+- Application : `PgAdmin 4`
+- URL : `http://127.0.0.1/pgadmin4`
 
 ## Github Desktop
 
@@ -485,9 +563,14 @@ sudo apt -y install geary
 
 ##### Via la boutique d'applications
 
+- Source :
+	- https://wiki.gnome.org/Apps/Evolution
+
 - Ouvrir la boutique d'applications
 - Rechercher **Evolution**
 - Installer
+
+> **Good**
 
 ##### Via Snap
 
