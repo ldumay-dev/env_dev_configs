@@ -369,6 +369,35 @@ https://github.com/shiftkey/desktop/releases/download/release-3.3.6-linux1/GitHu
 sudo gdebi GitHubDesktop-linux-3.3.6-linux1.deb
 ```
 
+## Nextcloud Client
+
+Source :
+- https://snapcraft.io/install/nextcloud-desktop-client/ubuntu
+
+### Installation
+
+```bash
+sudo snap install nextcloud-desktop-client
+```
+
+### Utilisation
+
+Lancez le client Nextcloud, que vous trouverez dans la liste des Applications de votre système, soit en lançant cette commande dans votre terminal :
+
+```bash
+nextcloud
+```
+
+### Désinstallation
+
+Pour supprimer cette application, il suffit de supprimer son paquet.
+
+```bash
+sudo apt remove nextcloud-client*
+```
+
+Selon la méthode choisie, la configuration globale de l'application est conservée ou supprimée. Les journaux du système, et les fichiers de préférence des utilisateurs dans leurs dossiers personnels sont toujours conservés.
+
 ## Docker
 
 Source :
